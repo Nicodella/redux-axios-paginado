@@ -1,19 +1,19 @@
-//serian las peticiones http para los posteos
+import { pokemonApi } from '../../../api/pokemonApi';
+import { setPokemons, startLoadingPokemons } from './pokemonSlice';
 
-import { pokemonApi } from "../../../api/pokemonApi";
-import { setPokemons, startLoadingPokemons } from "./pokemonSlice";
 
-export const getPokemons = (page = 0) => {
-    return async( dispatch, getState) => { // el getState se puede usar para traer todo el root state
-        dispatch(startLoadingPokemons());
-        //AQUI SE USA FETCH
-        //const resp =  await fetch(`https://pokeapi.co/api/v2/pokemon?limit=10&offset=${page*10}`);
-        //const data = await resp.json();
 
-        //AQUI SE USA AXIOS
-        const { data } = await pokemonApi.get(`/pokemon?limit=10&offset=${page*10}`);
+export const getPokemons = ( page = 0 ) => {
+    return async( dispatch, getState ) => {
+        dispatch( startLoadingPokemons() );
 
-        dispatch(setPokemons({pokemons: data.results, page: page + 1}));
+        // TODO: realizar petición http
+        // const resp = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=10&offset=${ page * 10 }`);
+        // const data = await resp.json();
+        const { data } = await pokemonApi.get(`/pokemon?limit=10&offset=${ page * 10 }`);
+
+        dispatch( setPokemons({ pokemons: data.results, page: page + 1 }) );
     }
-
 }
+
+

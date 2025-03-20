@@ -1,15 +1,19 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import { Provider } from 'react-redux'
-import {store} from './store'
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import { Provider } from 'react-redux';
+import App from './App'
 import './index.css'
-import { PokemonApp } from './PokemonApp.jsx'
-import { TodoApp } from './TodoApp.jsx'
+import { PokemonApp } from './PokemonApp';
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <Provider store={store}>
-    <TodoApp />
+import { store } from './store';
+import { TodoApp } from './TodoApp';
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <Provider store={ store }>
+      {/* <App /> */}
+      {/* <PokemonApp /> */}
+      <TodoApp />
     </Provider>
-  </StrictMode>,
+  </React.StrictMode>
 )
